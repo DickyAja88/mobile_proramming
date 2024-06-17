@@ -7,7 +7,7 @@ class ApiUrl {
   static const String createProduk = '$baseUrl/produk';
 
   static String updateProduk(int id) {
-    return '$baseUrl/produk/$id/update';
+    return '$baseUrl/produk/$id'; // aku sesuain yang aku, ntar edit aja
   }
 
   static String showProduk(int id) {

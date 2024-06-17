@@ -20,13 +20,18 @@ class Api {
 
   Future<dynamic> get(dynamic url) async {
     var token = await UserInfo().getToken();
+    print(token);
     var responseJson;
     try {
-      final response = await http.get(url,
+      final uri = Uri.parse(url);
+      final response = await http.get(uri,
           headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
+      print("response get : $response");
       responseJson = _returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');
+    } catch (e) {
+      print("catch :$e");
     }
     return responseJson;
   }

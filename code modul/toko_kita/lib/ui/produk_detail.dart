@@ -99,7 +99,7 @@ class _ProdukDetailState extends State<ProdukDetail>{
     ProdukBloc.deleteProduk(id: produk.id).then((status){
       if(status){
           Navigator.pop(context);
-          Navigator.pop(context); 
+          Navigator.pop(context, true); 
       }else{
         print("gagal menghapus produk");
       }

@@ -63,6 +63,10 @@ class _ProdukPageState extends State<ProdukPage> {
       ),
     );
   }
+
+  Future<void> _refreshProdukList() async {
+    setState(() {});
+  }
 }
 
 class ListProduk extends StatelessWidget {
@@ -89,13 +93,17 @@ class ItemProduk extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        bool? refresh = await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ProdukDetail(produk: produk),
           ),
         );
+        if (refresh == true) {
+          // Call the refresh function from the parent state
+          (context.findAncestorStateOfType<_ProdukPageState>()?._refreshProdukList)!();
+        }
       },
       child: Card(
         child: ListTile(
